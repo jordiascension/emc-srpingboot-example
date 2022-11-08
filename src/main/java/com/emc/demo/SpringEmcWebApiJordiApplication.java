@@ -19,7 +19,7 @@ public class SpringEmcWebApiJordiApplication {
 	void applicationReadyEvent() {
 		if (System.getenv("DYNO") == null) {
 			System.out.println("Application started ... launching browser now");
-			browse("http://localhost:8080/HelloWorld/hello");
+			browse("http://localhost:8080/swagger-ui/index.html");
 		} else {
 			System.out.println("You are in Heroku production environment");
 		}
