@@ -21,6 +21,15 @@ public class StudentService {
 		return studentRepository.findAll();
 	}
 
+	public List<Student> getStudentsByName(String name) {
+		return studentRepository.findByName(name);
+	}
+
+	public List<Student> getStudentsByNameAndSurname(String name,
+			String surname) {
+		return studentRepository.findByNameAndSurname(name, surname);
+	}
+
 	public Student saveStudent(Student student) {
 		return studentRepository.save(student);
 	}
