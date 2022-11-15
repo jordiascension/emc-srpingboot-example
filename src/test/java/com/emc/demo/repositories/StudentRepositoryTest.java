@@ -1,3 +1,4 @@
+
 package com.emc.demo.repositories;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -11,9 +12,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import com.emc.demo.model.Student;
 
-@DataJpaTest
-//@AutoConfigureTestDatabase(replace = Replace.NONE)
-class StudentRepositoryTest {
+@DataJpaTest // @AutoConfigureTestDatabase(replace = Replace.NONE) class
+public class StudentRepositoryTest {
 
 	@Autowired
 	private TestEntityManager entityManager;
@@ -66,5 +66,4 @@ class StudentRepositoryTest {
 		assertTrue(studentList.size() > 0);
 
 	}
-
 }
