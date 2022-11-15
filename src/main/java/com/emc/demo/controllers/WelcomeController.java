@@ -13,6 +13,11 @@ public class WelcomeController {
 	@Value("${welcome.message}")
 	private String message;
 
+	@GetMapping("/")
+	public String mainWithParam() {
+		return "index"; // view
+	}
+
 	// /hello?name=kotlin
 	@GetMapping("/hello")
 	public String mainWithParam(
