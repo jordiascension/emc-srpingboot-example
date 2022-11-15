@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.emc.demo.exception.ResourceNotFoundException;
 import com.emc.demo.model.Student;
 import com.emc.demo.service.StudentService;
 
@@ -39,6 +41,14 @@ public class StudentRestController {
 		return ResponseEntity.ok(studentList);
 	}
 
+	@GetMapping(path = "/students/age/{age}", produces = "application/json")
+	public ResponseEntity<List<Student>> getStudentsByAge(
+			@PathVariable("age") int age) {
+		List<Student> studentList = studentService.getStudentsByAge(age);
+
+		return ResponseEntity.ok(studentList);
+	}
+
 	@GetMapping(path = "/students/{name}/{surname}", produces = "application/json")
 	public ResponseEntity<List<Student>> getStudentsByNameAndSurname(
 			@PathVariable("name") String name,
@@ -53,6 +63,14 @@ public class StudentRestController {
 	public ResponseEntity<Student> saveStudent(@RequestBody Student student) {
 		return new ResponseEntity<Student>(studentService.saveStudent(student),
 				HttpStatus.CREATED);
+	}
+
+	@PutMapping("/students/{id}")
+	public ResponseEntity<Student> updateStudent(@RequestBody Student student,
+			@PathVariable("id") int id) throws ResourceNotFoundException {
+		student.setIdstudent(id);
+		return new ResponseEntity<Student>(
+				studentService.updateStudent(student), HttpStatus.OK);
 	}
 
 }
