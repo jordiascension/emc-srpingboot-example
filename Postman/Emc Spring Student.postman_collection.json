@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "3785209a-3778-498f-9ba1-1993e9683240",
+		"name": "Emc Spring Student",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "617943"
+	},
+	"item": [
+		{
+			"name": "Get All Students",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/student/students",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"student",
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Student by name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/student/students/Sergio",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"student",
+						"students",
+						"Sergio"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
