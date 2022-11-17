@@ -21,8 +21,13 @@ public class StudentController {
 	@GetMapping("/studentList")
 	public String getStudents(Model model) {
 
-		String fooResourceUrl = "http://localhost:8080/student/students";
+		String fooResourceUrl = "";
 
+		if (System.getenv("DYNO") == null) {
+			fooResourceUrl = "https://emc-test-jordi.herokuapp.com/student/students";
+		} else {
+			fooResourceUrl = "http://localhost:8080/student/students";
+		}
 		ResponseEntity<Student[]> response = restTemplate
 				.getForEntity(fooResourceUrl, Student[].class);
 		Student[] studentsArray = response.getBody();
