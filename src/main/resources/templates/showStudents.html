@@ -20,14 +20,14 @@ table.center {
 <table class="center">
     <thead>
         <tr>
-            <th> Title </th>
-            <th> Author </th>
+            <th> Name </th>
+            <th> Surname </th>
             <th> Age </th>
         </tr>
     </thead>
     <tbody>
-	<tr th:if="${students.empty}">
-            <td colspan="2"> No Books Available </td>
+		<tr th:if="${students.empty}">
+            <td colspan="2"> No Students Available </td>
         </tr>
         <tr th:each="student : ${students}">
             <td><span th:text="${student.name}"> Name </span></td>

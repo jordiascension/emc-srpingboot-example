@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,18 +19,19 @@ public class StudentController {
 	@Autowired
 	private RestTemplate restTemplate;
 
+	@Value("${webservice.url}")
+	private String url;
+
 	@GetMapping("/studentList")
 	public String getStudents(Model model) {
-
-		String fooResourceUrl = "https://emc-test-jordi.herokuapp.com/student/students";
 
 		/*
 		 * if (System.getenv("DYNO") == null) { fooResourceUrl =
 		 * "https://emc-test-jordi.herokuapp.com/student/students"; } else {
 		 * fooResourceUrl = "http://localhost:8080/student/students"; }
 		 */
-		ResponseEntity<Student[]> response = restTemplate
-				.getForEntity(fooResourceUrl, Student[].class);
+		ResponseEntity<Student[]> response = restTemplate.getForEntity(url,
+				Student[].class);
 		Student[] studentsArray = response.getBody();
 
 		List<Student> studentList2 = Arrays.asList(studentsArray);
