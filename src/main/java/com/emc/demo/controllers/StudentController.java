@@ -9,7 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.emc.demo.model.Student;
 
@@ -39,5 +42,20 @@ public class StudentController {
 
 		return "showStudents";
 
+	}
+
+	@GetMapping("/addStudentForm")
+	public ModelAndView addStudentForm() {
+		ModelAndView mav = new ModelAndView("addStudentForm");
+		Student student = new Student();
+		mav.addObject("student", student);
+		return mav;
+	}
+
+	@PostMapping("/saveStudent")
+	public String saveStudent(@ModelAttribute Student student) {
+
+		restTemplate.postForEntity(url, student, String.class);
+		return "redirect:/studentList";
 	}
 }
